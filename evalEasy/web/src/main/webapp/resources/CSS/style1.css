@@ -1,0 +1,60 @@
+@charset "utf-8";
+
+#tbl tr:nth-child(odd) td {
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+
+fieldset{
+	max-width: 80%;
+}
+
+.highlight {
+	color:#000;
+	background:yellow;
+}
+
+.highlight2 {
+	color:#000;
+	background:#B8DA40 !important;
+}
+
+div{
+	border: 1px double green;
+	padding: 10px;
+	margin: 10px;
+}
+
+table{
+	border-spacing:2px;
+	border-collapse:collapse;
+	border: 1px double green;
+	padding: 10px;
+	margin: 2px;
+}
+
+th{
+	background-color: aqua;
+}
+
+h2 {
+	text-align: center;
+	color: gray;
+}
+
+.error {
+	color: red;
+	font-size: 12px;
+	font-style: italic;
+}
+.btn-link{
+  border:none;
+  outline:none;
+  background:none;
+  cursor:pointer;
+  color:#0000EE;
+  padding:0;
+  text-decoration:underline;
+  font-family:inherit;
+  font-size:inherit;
+}
+

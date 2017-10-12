@@ -1,0 +1,109 @@
+		<div>
+		<p>Recherche par nom</p>
+			<f:form modelAttribute="userForm" method="post"
+				action="chargerListUtilisateur">
+				<table>
+					<tr>
+						<td>nom:</td>
+						<td><f:input path="nom" /></td>
+						<td><f:errors path="nom"></f:errors></td>
+					</tr>
+					<tr>
+						<td><input type="submit" value="Soumettre"></td>
+					</tr>
+				</table>
+			</f:form>
+		</div>
+		
+		
+		
+		
+		
+		
+			@RequestMapping(value = "/chargerListUtilisateur")
+	public String chargerListUser(@Valid UserForm uf, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "consultationUtilisateur";
+		}
+		try {
+			List<Utilisateur> utilisateurs = metier.consulterListeUtilisateurParNom(uf.getNom());
+			uf.setUtilisateurs(utilisateurs);
+		} catch (Exception e) {
+			uf.setException(e.getMessage());
+		}
+		model.addAttribute("userForm", uf);
+		return "consultationUtilisateur";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		<c:if test="${empty listUserForm.utilisateurs }">
+		<div>
+			<h1 align="center">Recherche par nom</h1>
+			<f:form modelAttribute="listUserForm" method="post"
+				action="chargerListUtilisateur">
+				<table>
+					<tr>
+						<td>nom:</td>
+<!-- 						<td><f:input path="nom" /></td>
+					<td><f:errors path="nom"></f:errors></td>
+-->					</tr>
+					<tr>
+						<td><input type="submit" value="Soumettre"></td>
+					</tr>
+				</table>
+			</f:form>
+		</div>
+	</c:if>
+	<c:if test="${ empty listUserForm.exception  }">
+		<c:if test="${not empty listUserForm.utilisateurs }">
+			<div>
+				<table>
+
+					<c:forEach items="${ listUserForm.utilisateurs}" var="user">
+						<tr>
+							<td>Nom:</td>
+							<td>${user.nom }</td>
+							<td>Prénom:</td>
+							<td>${user.prenom }</td>
+							<td>Login:</td>
+							<td colspan="2" align="center">${user.login }</td>
+					</c:forEach>
+					</tr>
+				</table>
+			</div>
+		</c:if>
+	</c:if>
+	<c:if test="${not empty listUserForm.exception  }">
+		<div>
+			<font color="red">${userForm.exception }</font>44:48
+		</div>
+	</c:if>
+	<div>
+		<f:form modelAttribute="listUserForm" method="post" action="consultationListUtilisateur">
+			<table>
+				<tr>
+					<td><input type="submit" value="Retour"></td>
+				</tr>
+			</table>
+		</f:form>
+	</div>
